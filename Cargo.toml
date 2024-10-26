@@ -1,0 +1,12 @@
+[package]
+name = "GA_Project"
+version = "0.1.0"
+edition = "2021"
+authors = ["SorcierMaheP"]
+
+[dependencies]
+bitvec = "1.0.1"
+rand = "0.8.5"
+polars = { version = "0.43.1", features = ["lazy"] }
+json = "0.12.4"
+plotters = "0.3.3"
