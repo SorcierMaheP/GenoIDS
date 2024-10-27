@@ -16,7 +16,7 @@ type Chromosome = BitArr!(for 14, in u16, Msb0);
 
 // Plot average fitness values across generations
 fn fitness_plotter(summary: &Vec<f64>) {
-    let root = BitMapBackend::new("./line_graph.png", (1280, 720)).into_drawing_area();
+    let root = BitMapBackend::new("src/line_graph.png", (1280, 720)).into_drawing_area();
     root.fill(&WHITE).unwrap();
 
     let mut chart = ChartBuilder::on(&root)
@@ -210,7 +210,7 @@ fn main() {
     member_corrector(&mut population);
 
     // Import selective columns of the dataset
-    let lf = LazyCsvReader::new("./kdd99_10_perc.csv")
+    let lf = LazyCsvReader::new("src/kdd99_10_perc.csv")
         .finish()
         .unwrap()
         .select([cols(vec!["protocol_type", "service", "flag", "outcome"])]);
@@ -243,7 +243,7 @@ fn main() {
     let chosen_rules: Vec<(usize, f64)> = final_population_order.into_iter().take(10).collect();
 
     // Convert binary rule to its original meaning
-    let encodings_file = fs::read_to_string("./encodings.json").unwrap();
+    let encodings_file = fs::read_to_string("src/encodings.json").unwrap();
     let encodings = json::parse(&encodings_file).unwrap();
     rule_interpreter(&chosen_rules, &final_population, &encodings);
 
